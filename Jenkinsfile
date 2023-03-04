@@ -1,31 +1,35 @@
 pipeline {
-
-   agent any
-
-   stages {
-
-     stage('Install Dependencies') {
-        steps {
-           sh 'npm install'
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                sh 'npm install'
+            }
         }
-     }
-
-     stage('Build to prod') {
-        steps {
-           sh 'npm run build'
-           sh 'echo "sucessfully built the app"'
+        stage('Test') {
+            steps {
+                sh './jenkins/scripts/test.sh'
+            }
         }
-      }
-
-
-     stage('Deploy in prod environment') {
-        steps {
-           sh 'serve -s build'
-           sh 'echo "Deployed in staging env..."'
+        stage('Deliver for development') {
+            when {
+                branch 'dev' 
+            }
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
         }
-      }
-
+        stage('Deploy for production') {
+            when {
+                branch 'master'  
+            }
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+                input message: 'Finished using the web site? (Click "Proceed" to continue)'
+                sh './jenkins/scripts/kill.sh'
+            }
         }
-
-   }
-
+    }
+}

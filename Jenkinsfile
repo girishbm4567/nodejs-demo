@@ -10,7 +10,7 @@ pipeline {
                     properties([pipelineTriggers([githubPush()])])
                 }
                 //define scm connection for polling
-                git branch: dev, credentialsId: '', url: 'https://github.com/girishbm4567/nodejs-demo.git'
+                git branch: dev, credentialsId: ' ', url: 'https://github.com/girishbm4567/nodejs-demo.git'
                 checkout scm: [$class: 'GitSCM',
                     userRemoteConfigs: [[url: 'https://github.com/girishbm4567/nodejs-demo.git',
                                         credentialsId: ' ']],

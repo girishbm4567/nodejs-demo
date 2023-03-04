@@ -1,6 +1,16 @@
 pipeline {
     agent any
     stages {
+        stage('push triger') {
+            steps {
+                script {
+                    properties([pipelineTriggers([pollSCM('')])])
+                }
+                //define scm connection for polling
+                git branch: dev, credentialsId:  ', url: ''
+            }
+        
+        
         stage('Build') {
             steps {
                 sh 'npm install'

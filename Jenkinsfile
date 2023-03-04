@@ -1,23 +1,31 @@
-pipeline { 
-  
+pipeline {
+
    agent any
 
    stages {
-   
-     stage('Install Dependencies') { 
-        steps { 
-           sh 'npm install' 
+
+     stage('Install Dependencies') {
+        steps {
+           sh 'npm install'
         }
      }
-     
-     stage('Deploy in Dev Env') { 
-        steps { 
-           sh 'npm start'
-           sh 'echo "Deployed in Dev env"'
+
+     stage('Build to prod') {
+        steps {
+           sh 'npm run build'
+           sh 'echo "sucessfully built the app"'
         }
       }
 
-      
+
+     stage('Deploy in prod environment') {
+        steps {
+           sh 'serve -s build'
+           sh 'echo "Deployed in staging env..."'
+        }
+      }
+
+        }
 
    }
-}
+

@@ -20,9 +20,7 @@ pipeline {
                     }
                 }
             }
-        }
-  
-        stage('trigermmmm') {
+            
             when {
                 expression {
                     return env.GIT_BRANCH == "master"
@@ -41,6 +39,7 @@ pipeline {
                 }
             }
         }
+        
     }
 }
 

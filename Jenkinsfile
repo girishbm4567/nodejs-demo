@@ -4,7 +4,9 @@ pipeline {
     stages {
         stage('triger') {
             when {
-                branch 'dev' 
+                expression {
+                    return env.GIT_BRANCH == "origin/dev"
+                }
             }
             stages {
                 stage("install dependencies"){
@@ -22,7 +24,9 @@ pipeline {
   
         stage('trigermmmm') {
             when {
-                branch 'master' 
+                expression {
+                    return env.GIT_BRANCH == "origin/dev"
+                }
             }
             stages {
                 stage("install dependencies"){

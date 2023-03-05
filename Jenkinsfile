@@ -5,7 +5,13 @@ pipeline {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'dev') {
-                        echo 'Hello from main branch'
+                        stages{
+                            stage('test'){
+                                steps {
+                                    echo "hhhh"
+                                }
+                            }
+                        }
                     }  else {
                         sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
                     }

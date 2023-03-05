@@ -5,7 +5,7 @@ pipeline {
         stage('triger') {
             when {
                 expression {
-                    return env.GIT_BRANCH == "origin/dev"
+                    return env.GIT_BRANCH == "dev"
                 }
             }
             stages {
@@ -25,7 +25,7 @@ pipeline {
         stage('trigermmmm') {
             when {
                 expression {
-                    return env.GIT_BRANCH == "origin/dev"
+                    return env.GIT_BRANCH == "master"
                 }
             }
             stages {

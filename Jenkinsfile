@@ -1,42 +1,17 @@
 pipeline {
     agent any
-    
     stages {
-        stage('triger') {
+        stage('Hello') {
             steps {
                 script {
-                    if (env.BRANCH_NAME != 'master') {
-                        stages {
-                             stage("install dependencies"){
-                                 steps {
-                                     sh 'echo "hii"'
-                                 }
-                             }
-                            stage("hhhhhhh"){
-                                 steps {
-                                     sh 'echo "hihhhhhi"'
-                                 }
-                             }
-                        }
-                    } else {
-                        stages {
-                             stage("install dependencies"){
-                                 steps {
-                                     sh 'echo "hiddddddddi"'
-                                 }
-                             }
-                            stage("hhhhhhh"){
-                                 steps {
-                                     sh 'echo "hihhhddddddhhi"'
-                                 }
-                             }
-                        }
-                    }  
-                    
+                    if (env.BRANCH_NAME == 'dev') {
+                        echo 'Hello from main branch'
+                    }  else {
+                        sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
+                    }
                 }
+               
             }
         }
     }
 }
-           
-

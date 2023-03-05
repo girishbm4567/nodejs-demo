@@ -3,43 +3,40 @@ pipeline {
     
     stages {
         stage('triger') {
-            when {
-                expression {
-                    return env.GIT_BRANCH == "dev"
-                }
-            }
-            stages {
-                stage("install dependencies"){
-                    steps {
-                        sh 'echo "hii"'
-                    }
-                }
-                stage ("ttt") {
-                    steps {
-                        sh 'echo "hhhhhh"'
-                    }
-                }
-            }
-            
-            when {
-                expression {
-                    return env.GIT_BRANCH == "master"
-                }
-            }
-            stages {
-                stage("install dependencies"){
-                    steps {
-                        sh 'echo "mmmm"'
-                    }
-                }
-                stage ("ttt") {
-                    steps {
-                        sh 'echo "kkkkk"'
-                    }
+            steps {
+                script {
+                    if (env.BRANCH_NAME != 'master') {
+                        stages {
+                             stage("install dependencies"){
+                                 steps {
+                                     sh 'echo "hii"'
+                                 }
+                             }
+                            stage("hhhhhhh"){
+                                 steps {
+                                     sh 'echo "hihhhhhi"'
+                                 }
+                             }
+                        }
+                    } else {
+                        stages {
+                             stage("install dependencies"){
+                                 steps {
+                                     sh 'echo "hiddddddddi"'
+                                 }
+                             }
+                            stage("hhhhhhh"){
+                                 steps {
+                                     sh 'echo "hihhhddddddhhi"'
+                                 }
+                             }
+                        }
+                    }  
+                    
                 }
             }
         }
-        
     }
 }
+           
 

@@ -9,19 +9,17 @@ pipeline {
             stages {
                 stage("install dependencies"){
                     steps {
-                        sh echo "hii"
+                        sh 'echo "hii"'
                     }
                 }
                 stage ("ttt") {
                     steps {
-                        sh echo "hhhhhh"
+                        sh 'echo "hhhhhh"'
                     }
                 }
             }
         }
-    }
-    
-    stages {
+  
         stage('trigermmmm') {
             when {
                 branch 'master' 
@@ -29,16 +27,16 @@ pipeline {
             stages {
                 stage("install dependencies"){
                     steps {
-                        sh echo "mmmm"
+                        sh 'echo "mmmm"'
                     }
                 }
                 stage ("ttt") {
                     steps {
-                        sh echo "kkkkk"
+                        sh 'echo "kkkkk"'
                     }
                 }
             }
         }
-     }
+    }
 }
 

@@ -1,7 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('Hello') {
+        stage ("Install Dependencies"){
+            steps {
+                sh 'npm install'
+            }
+        }
+        
+        stage ("Build"){
+            steps {
+                sh 'npm run build'
+            }
+        }
+        
+        stage('Deploy') {
             steps {
                 script {
                     if (env.BRANCH_NAME == 'dev') {

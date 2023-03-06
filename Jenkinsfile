@@ -14,20 +14,21 @@ pipeline {
         }
         
         stage('Deploy') {
-            when {
-                branch 'dev' 
-                }
             steps {
-                sh 'echo "in dev"'
+                script {
+                    if (env.BRANCH_NAME == 'dev') {
+                        echo "From dev"
+                        } else if (env.BRANCH_NAME == 'master') {
+                        echo "from master"
+                        }
+                    }
                 }
+                    
+
             
-            when {
-                branch 'master' 
-                }
-            steps {
-                sh 'echo "in master"'
-                }
-     
+
+
+
 
         }
     }

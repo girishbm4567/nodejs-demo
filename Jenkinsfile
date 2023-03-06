@@ -14,18 +14,21 @@ pipeline {
         }
         
         stage('Deploy') {
-            steps {
-                script {
-                    if (env.BRANCH_NAME == 'dev') {
-                        sh './jenkins/scripts/deliver.sh'
-                        input message: 'Finished using the web site? (Click "Proceed" to continue)'
-                        sh './jenkins/scripts/kill.sh'
-                    }  else {
-                        sh "echo 'Hello from ${env.BRANCH_NAME} branch!'"
-                    }
+            when {
+                branch 'dev' 
                 }
-               
-            }
+            steps {
+                sh 'echo "in dev"'
+                }
+            
+            when {
+                branch 'master' 
+                }
+            steps {
+                sh 'echo "in master"'
+                }
+     
+
         }
     }
 }
